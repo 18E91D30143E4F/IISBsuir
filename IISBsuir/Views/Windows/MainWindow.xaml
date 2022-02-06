@@ -12,13 +12,6 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <TextBox 
-            HorizontalAlignment="Left" 
-            Margin="16,27,0,0"
-            Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" 
-            TextWrapping="Wrap"
-            VerticalAlignment="Top" 
-            Width="120"/>
-
+        
     </Grid>
 </Window>

@@ -9,7 +9,6 @@
 	<ItemGroup>
 		<Compile Remove="Services\**" />
 		<EmbeddedResource Remove="Services\**" />
-		<Folder Include="Infrastructure\" />
 		<None Remove="Services\**" />
 		<Folder Include="Data\" />
 		<Folder Include="Models\" />
