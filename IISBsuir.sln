@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISBsuir", "IISBsuir\IISBsuir.csproj", "{8CB1DCA7-F1E5-4687-8A4C-A45B7A44C1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IISBsuir", "IISBsuir\IISBsuir.csproj", "{8CB1DCA7-F1E5-4687-8A4C-A45B7A44C1D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6E8D06F1-B3B7-45FC-ABEF-47BD08BA4C7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISBsuirConsole", "Tests\IISBsuirConsole\IISBsuirConsole.csproj", "{E42CCBCF-5CD8-4000-841D-4E20D6F7CC52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IISBsuirConsole", "Tests\IISBsuirConsole\IISBsuirConsole.csproj", "{E42CCBCF-5CD8-4000-841D-4E20D6F7CC52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISBsuirWPFTest", "Tests\IISBsuirWPFTest\IISBsuirWPFTest.csproj", "{3036BCEC-6BB7-4990-B553-65DACF1E1DEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IISBsuirWPFTest", "Tests\IISBsuirWPFTest\IISBsuirWPFTest.csproj", "{3036BCEC-6BB7-4990-B553-65DACF1E1DEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLib", "TestLib\TestLib.csproj", "{0E8F71A1-E7FD-43B5-BB07-C6A40CCC1EF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{3036BCEC-6BB7-4990-B553-65DACF1E1DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3036BCEC-6BB7-4990-B553-65DACF1E1DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3036BCEC-6BB7-4990-B553-65DACF1E1DEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E8F71A1-E7FD-43B5-BB07-C6A40CCC1EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8F71A1-E7FD-43B5-BB07-C6A40CCC1EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8F71A1-E7FD-43B5-BB07-C6A40CCC1EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8F71A1-E7FD-43B5-BB07-C6A40CCC1EF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E42CCBCF-5CD8-4000-841D-4E20D6F7CC52} = {6E8D06F1-B3B7-45FC-ABEF-47BD08BA4C7A}
 		{3036BCEC-6BB7-4990-B553-65DACF1E1DEE} = {6E8D06F1-B3B7-45FC-ABEF-47BD08BA4C7A}
+		{0E8F71A1-E7FD-43B5-BB07-C6A40CCC1EF9} = {6E8D06F1-B3B7-45FC-ABEF-47BD08BA4C7A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09824EE0-BE12-4980-9DC9-CF6BBF549BF8}
