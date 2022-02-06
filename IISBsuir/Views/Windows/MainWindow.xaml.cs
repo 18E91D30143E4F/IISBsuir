@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace IISBsuirWPFTest
+namespace IISBsuir
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
