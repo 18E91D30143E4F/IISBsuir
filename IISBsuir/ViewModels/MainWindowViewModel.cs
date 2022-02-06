@@ -1,4 +1,7 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media;
+using IISBsuir.Infrastructure.Commands;
 using IISBsuir.ViewModels.Base;
 
 namespace IISBsuir.ViewModels
@@ -17,5 +20,27 @@ namespace IISBsuir.ViewModels
         }
         #endregion
 
+        #region Команды
+
+        public ICommand CloseApplicationCommand { get; }
+
+        private void OnCloseApplicationCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+
+        #endregion
+
+        public MainWindowViewModel()
+        {
+            #region Команды
+
+            CloseApplicationCommand =
+                new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+
+            #endregion
+        }
     }
 }
