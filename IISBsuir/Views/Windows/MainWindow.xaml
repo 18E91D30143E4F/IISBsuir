@@ -21,12 +21,22 @@
             Command="{Binding CloseApplicationCommand}"
             />
     </Window.InputBindings>
-    <Grid>
-        <Menu>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход" Command="{StaticResource CloseApplicationCommand}">
                 </MenuItem>
             </MenuItem>
         </Menu>
-    </Grid>
+        <StatusBar DockPanel.Dock="Bottom">
+
+        </StatusBar>
+
+        <TabControl>
+            <TabItem Header="Профиль студента"></TabItem>
+            <TabItem Header="Зачетка"></TabItem>
+            <TabItem Header="Учеба"></TabItem>
+            <TabItem Header="Группа"></TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>

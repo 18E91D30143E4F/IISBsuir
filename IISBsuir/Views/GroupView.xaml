@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="IISBsuir.Views.GroupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IISBsuir.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBox >Группа:</TextBox>
+        <DataGrid Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Должность" Binding="{Binding}"/>
+                <DataGridTextColumn Header="Фамилия Имя Отчество" Binding="{Binding}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding}"/>
+                <DataGridTextColumn Header="Электронная почта" Binding="{Binding}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
