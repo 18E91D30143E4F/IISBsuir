@@ -10,9 +10,15 @@
 		<Compile Remove="Services\**" />
 		<EmbeddedResource Remove="Services\**" />
 		<None Remove="Services\**" />
+		<Compile Include="Services\DataService.cs" />
 		<Folder Include="Data\" />
 		<Folder Include="Models\" />
-		<Folder Include="Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="BsuirHelper">
+	    <HintPath>..\..\..\..\..\OneDrive\Документы\StudyBSUIR\BsuirHelper\BsuirClient\bin\Release\net5.0\BsuirHelper.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

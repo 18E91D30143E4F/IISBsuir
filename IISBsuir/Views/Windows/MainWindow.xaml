@@ -5,16 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:IISBsuir.ViewModels"
+        xmlns:cmd="clr-namespace:IISBsuir.Infrastructure.Commands"
         xmlns:l="clr-namespace:IISBsuir"
         Title="{Binding Title}"
         Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding 
+            Modifiers="Control" Key="Q"
+            Command="{Binding CloseApplicationCommand}"
+            />
+    </Window.InputBindings>
     <Grid>
         <Menu>
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"/>
+                <MenuItem Header="Выход" Command="{StaticResource CloseApplicationCommand}">
+                </MenuItem>
             </MenuItem>
         </Menu>
     </Grid>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestLib
+﻿namespace TestLib
 {
     public class Class1
     {

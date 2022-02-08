@@ -1,5 +1,5 @@
-﻿using System;
-using IISBsuir.Infrastructure.Commands.Base;
+﻿using IISBsuir.Infrastructure.Commands.Base;
+using System;
 
 namespace IISBsuir.Infrastructure.Commands
 {

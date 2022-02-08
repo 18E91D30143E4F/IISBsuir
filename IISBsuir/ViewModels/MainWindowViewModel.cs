@@ -1,8 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using IISBsuir.Infrastructure.Commands;
+﻿using IISBsuir.Infrastructure.Commands;
 using IISBsuir.ViewModels.Base;
+using System.Windows;
+using System.Windows.Input;
 
 namespace IISBsuir.ViewModels
 {
