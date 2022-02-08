@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading;
-using System.Windows.Input;
-using BsuirHelper.Models;
+﻿using System.Threading.Tasks;
 using IISBsuir.Infrastructure.Commands;
 using IISBsuir.Services;
 using IISBsuir.ViewModels.Base;
+using IIsHelper.Models;
+using System.Windows.Input;
 
 namespace IISBsuir.ViewModels
 {
@@ -43,7 +41,7 @@ namespace IISBsuir.ViewModels
         {
             _mainModel = mainModel;
 
-            _dataService = DataService.BuildDataService().Result;
+            _dataService = Task.Run(DataService.BuildDataService).Result;
 
             #region Команды
 

@@ -7,7 +7,7 @@ namespace IISBsuir.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
-        private readonly GroupViewModel _groupViewModel;
+        public GroupViewModel GroupView { get; }
 
         #region Заголовок окна
 
@@ -36,12 +36,12 @@ namespace IISBsuir.ViewModels
 
         public MainWindowViewModel()
         {
-            _groupViewModel = new GroupViewModel(this);
+            GroupView = new GroupViewModel(this);
 
             #region Команды
 
             CloseApplicationCommand =
-                new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+              new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
 
             #endregion
         }

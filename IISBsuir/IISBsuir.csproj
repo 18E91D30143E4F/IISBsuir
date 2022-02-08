@@ -16,9 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="BsuirHelper">
-	    <HintPath>..\..\..\..\..\OneDrive\Документы\StudyBSUIR\BsuirHelper\BsuirClient\bin\Release\net5.0\BsuirHelper.dll</HintPath>
-	  </Reference>
+		<ProjectReference Include="..\..\..\BSUIR\IIsHelper\IIsHelper\IIsHelper.csproj" />
 	</ItemGroup>
 
 </Project>
