@@ -7,6 +7,8 @@ namespace IISBsuir.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        private readonly GroupViewModel _groupViewModel;
+
         #region Заголовок окна
 
         private string _Title = "IIS Bsuir";
@@ -34,6 +36,8 @@ namespace IISBsuir.ViewModels
 
         public MainWindowViewModel()
         {
+            _groupViewModel = new GroupViewModel(this);
+
             #region Команды
 
             CloseApplicationCommand =
