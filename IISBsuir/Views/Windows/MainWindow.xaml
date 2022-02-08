@@ -2,12 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        xmlns:view="clr-namespace:IISBsuir.Views"
         xmlns:vm="clr-namespace:IISBsuir.ViewModels"
         xmlns:cmd="clr-namespace:IISBsuir.Infrastructure.Commands"
         xmlns:l="clr-namespace:IISBsuir"
-        Title="{Binding Title}" d:DesignHeight="278.495" d:DesignWidth="349.11">
+        Title="{Binding Title}"
+        d:DesignHeight="278.495" d:DesignWidth="349.11">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -32,7 +33,9 @@
             <TabItem Header="Профиль студента"></TabItem>
             <TabItem Header="Зачетка"></TabItem>
             <TabItem Header="Учеба"></TabItem>
-            <TabItem Header="Группа"></TabItem>
+            <TabItem Header="Группа">
+                <view:GroupView DataContext="{Binding GroupView}"/>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>

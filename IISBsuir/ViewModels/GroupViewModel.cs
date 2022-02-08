@@ -32,10 +32,17 @@ namespace IISBsuir.ViewModels
 
         private void OnRefreshDataCommandExecuted(object p)
         {
-            _group = _dataService.BsuirClient.GetGroupInfoAsync().Result;
+            Group = Task.Run(_dataService.BsuirClient.GetGroupInfoAsync).Result;
         }
 
         #endregion
+
+        /// <summary>
+        /// Отладочный конструктор, для визуального дизайнера
+        /// </summary>
+        public GroupViewModel() : this(null)
+        {
+        }
 
         public GroupViewModel(MainWindowViewModel mainModel)
         {

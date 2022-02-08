@@ -3,26 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:IISBsuir.ViewModels"
              xmlns:local="clr-namespace:IISBsuir.Views"
+             xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
+
              mc:Ignorable="d" 
-             
+             d:DataContext="{d:DesignInstance vm:GroupViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBox >Группа:</TextBox>
-        <Button Height="30" Width="100" Margin="0,35,700,35" >
+        <TextBlock Text="{Binding Group.NumberOfGroup}"></TextBlock>
+        <Button Height="30" Width="100" Command="{Binding RefreshDataCommand}" >
             <TextBlock>Загрузить</TextBlock>
         </Button>
-        <DataGrid Grid.Row="1">
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Group.PersonInfo}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Должность" Binding="{Binding}"/>
-                <DataGridTextColumn Header="Фамилия Имя Отчество" Binding="{Binding}"/>
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding}"/>
-                <DataGridTextColumn Header="Электронная почта" Binding="{Binding}"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Position}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия Имя Отчество" Binding="{Binding Fio}"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding  Phone}"/>
+                <DataGridTextColumn Header="Электронная почта" Binding="{Binding Email}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
