@@ -13,7 +13,7 @@ namespace IISBsuir.ViewModels
 
         public MainWindowViewModel _mainModel { get; }
 
-        #region Groups : <Group>
+        #region Group
 
         private Group _group;
 
@@ -48,7 +48,7 @@ namespace IISBsuir.ViewModels
         {
             _mainModel = mainModel;
 
-            _dataService = Task.Run(DataService.BuildDataService).Result;
+            _dataService = Task.Run(DataService.GetInstance).Result;
 
             #region Команды
 

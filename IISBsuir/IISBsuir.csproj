@@ -10,6 +10,7 @@
 		<Compile Remove="Services\**" />
 		<EmbeddedResource Remove="Services\**" />
 		<None Remove="Services\**" />
+		<None Remove="Resources\Img\Person.png" />
 		<Compile Include="Services\DataService.cs" />
 		<Folder Include="Data\" />
 		<Folder Include="Models\" />
@@ -17,6 +18,10 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\BSUIR\IIsHelper\IIsHelper\IIsHelper.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\Img\Person.png" />
 	</ItemGroup>
 
 </Project>

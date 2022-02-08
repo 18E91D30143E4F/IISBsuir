@@ -3,15 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:l="clr-namespace:IISBsuir.Views"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             xmlns:vm="clr-namespace:IISBsuir.ViewModels"
+             xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
+             d:DataContext="{d:DesignInstance vm:ProfileViewModel}"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <GridSplitter Width="3" Background="Transparent"/>
 
+        <DockPanel Grid.Row="0" Grid.Column="0" Margin="5 5 5 5" >
+            <Rectangle DockPanel.Dock="Top" Width="180" Height="200"
+                       StrokeThickness="3"
+                       RadiusX="7" RadiusY="8">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="\Resources\Img\Person.png"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button DockPanel.Dock="Bottom" Height="25" Width="180" FontSize="14">Обновить фотографию</Button>
+        </DockPanel>
 
+        <DockPanel Grid.Row="1" Grid.Column="0" Margin="5 5 5 5">
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock FontSize="16">Настройки доступа</TextBlock>
+                <CheckBox FontSize="13">Общедоступный рейтинг</CheckBox>
+                <CheckBox FontSize="13">Общедоступный профиль</CheckBox>
+                <CheckBox FontSize="13">Ищу работу</CheckBox>
+            </StackPanel>
+
+            <StackPanel DockPanel.Dock="Bottom">
+                <TextBlock FontSize="16">Microsoft Office 365</TextBlock>
+                <TextBlock FontSize="13">Логин:</TextBlock>
+                <TextBlock FontSize="13">Пароль:</TextBlock>
+            </StackPanel>
+        </DockPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <TextBlock FontSize="22" Text="{Binding StudentInfo.FirstName }"></TextBlock>
+            <TextBlock FontSize="22">05.09.2002</TextBlock>
+            <TextBlock FontSize="22">3 Курс</TextBlock>
+            <TextBlock FontSize="22">Факультет</TextBlock>
+
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -8,7 +8,8 @@
         xmlns:cmd="clr-namespace:IISBsuir.Infrastructure.Commands"
         xmlns:l="clr-namespace:IISBsuir"
         Title="{Binding Title}"
-        d:DesignHeight="278.495" d:DesignWidth="349.11">
+        Width="800" Height="500"
+        d:DesignHeight="480" d:DesignWidth="750">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -28,9 +29,10 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-
         <TabControl>
-            <TabItem Header="Профиль студента"></TabItem>
+            <TabItem Header="Профиль студента">
+                <view:ProfileView DataContext="{Binding ProfileView}"/>
+            </TabItem>
             <TabItem Header="Зачетка"></TabItem>
             <TabItem Header="Учеба"></TabItem>
             <TabItem Header="Группа">

@@ -8,6 +8,8 @@ namespace IISBsuir.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         public GroupViewModel GroupView { get; }
+        public ProfileViewModel ProfileView { get; }
+
 
         #region Заголовок окна
 
@@ -37,6 +39,7 @@ namespace IISBsuir.ViewModels
         public MainWindowViewModel()
         {
             GroupView = new GroupViewModel(this);
+            ProfileView = new ProfileViewModel(this);
 
             #region Команды
 
