@@ -14,7 +14,6 @@ namespace IISBsuir.Services
         private const string Login = "95100018";
         private const string Password = "Agireh30";
 
-
         public static DataService GetInstance()
         {
             if (_instance == null)

@@ -10,7 +10,10 @@ namespace IISBsuirConsole
         {
             var helper = new IIsClient() { Login = "95100018", Password = "Agireh30" };
             Console.WriteLine(await helper.AuthAsync());
-            var data = await helper.GetUserInfoAsync();
+
+            var info = await helper.GetUserInfoAsync();
+            info.References = null;
+            var data = await helper.PutStudentInfoAsync(info);
 
             Console.ReadLine();
         }

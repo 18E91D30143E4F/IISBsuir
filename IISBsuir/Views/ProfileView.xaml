@@ -7,6 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
              xmlns:fa="http://schemas.fontawesome.com/icons/"
+             xmlns:c="clr-namespace:IISBsuir.Infrastructure.Converters"
              d:DataContext="{d:DesignInstance vm:ProfileViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="500" d:DesignWidth="800">
     <i:Interaction.Triggers>
@@ -14,7 +15,7 @@
             <i:InvokeCommandAction Command="{Binding RefreshDataCommand}"></i:InvokeCommandAction>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -42,9 +43,24 @@
                                      Foreground="CornflowerBlue"/>
                     Настройки доступа
                 </TextBlock>
-                <CheckBox FontSize="13">Общедоступный рейтинг</CheckBox>
-                <CheckBox FontSize="13">Общедоступный профиль</CheckBox>
-                <CheckBox FontSize="13">Ищу работу</CheckBox>
+                <CheckBox FontSize="13"
+                          IsChecked="{Binding StudentInfo.ShowRating}"
+                          Command="{Binding SendUserProfileCommand}"
+                          CommandParameter="{Binding StudentInfo}">
+                    Общедоступный рейтинг
+                </CheckBox>
+                <CheckBox FontSize="13" 
+                          IsChecked="{Binding StudentInfo.Published}"
+                          Command="{Binding SendUserProfileCommand}"
+                          CommandParameter="{Binding StudentInfo}">
+                    Общедоступный профиль
+                </CheckBox>
+                <CheckBox FontSize="13" 
+                          IsChecked="{Binding StudentInfo.SearchJob}"
+                          Command="{Binding SendUserProfileCommand}"
+                          CommandParameter="{Binding StudentInfo}">
+                    Ищу работу
+                </CheckBox>
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Bottom">
@@ -85,14 +101,28 @@
             <TextBlock FontSize="22" 
                        Text="{Binding StudentInfo.Course, StringFormat=Курс: {0}}"/>
             <TextBlock FontSize="22" 
-                       Text="{Binding Path=StudentInfo.Faculty, StringFormat=Факультет:{0}}"/>
+                       Text="{Binding Path=StudentInfo.Faculty, StringFormat=Факультет: {0}}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Основная информация" FontSize="14"/>
-            <TextBox Height="50" Text="{Binding StudentInfo.Summary}"></TextBox>
+            <WrapPanel>
+                <TextBlock FontSize="14" Margin="0 0 0 5">Основная информация</TextBlock>
+                <fa:ImageAwesome Icon="Regular_Save" 
+                                 Height="20" Margin="5 0 0 2"
+                                 Foreground="CornflowerBlue">
+                    <fa:ImageAwesome.InputBindings>
+                        <MouseBinding
+                            Gesture="LeftClick"
+                            Command="{Binding SendUserProfileCommand}"
+                            CommandParameter="{Binding StudentInfo}"
+                            />
+                    </fa:ImageAwesome.InputBindings>
+                </fa:ImageAwesome>
+            </WrapPanel>
+
+            <TextBox Height="50" Text="{Binding StudentInfo.Summary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="Ключевые навыки" FontSize="14"/>
-            <TextBox Height="50" Text="{Binding StudentInfo.Skills, StringFormat=ToString()}"></TextBox>
+            <TextBox Height="50"/>
 
             <TextBlock Text="Мои ссылки" FontSize="14"/>
             <TextBox Height="50" Text="{Binding StudentInfo.References}"></TextBox>

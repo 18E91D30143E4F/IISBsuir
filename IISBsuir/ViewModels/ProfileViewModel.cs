@@ -32,6 +32,15 @@ namespace IISBsuir.ViewModels
             StudentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
         }
 
+        public ICommand SendUserProfileCommand { get; }
+
+        private void OnSendUserProfileCommandExecuted(object p)
+        {
+            var studInfo = p as StudentInfo;
+
+            Task.Run(() => _dataService.BsuirClient.PutStudentInfoAsync(studInfo));
+        }
+
         #endregion
 
         /// <summary>
@@ -50,6 +59,7 @@ namespace IISBsuir.ViewModels
             _studentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
 
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);
+            SendUserProfileCommand = new LambdaCommand(OnSendUserProfileCommandExecuted);
         }
     }
 }
