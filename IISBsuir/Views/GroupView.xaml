@@ -31,7 +31,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Group.NumberOfGroup}"></TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="17"
+                   Text="{Binding Group.NumberOfGroup, StringFormat=Номер группы: {0}}"/>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Group.PersonInfo}" AutoGenerateColumns="False">
             <DataGrid.Columns>
