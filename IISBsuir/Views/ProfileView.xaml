@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:IISBsuir.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
              d:DataContext="{d:DesignInstance vm:ProfileViewModel}"
              d:DesignHeight="500" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding RefreshDataCommand}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -38,17 +44,39 @@
 
             <StackPanel DockPanel.Dock="Bottom">
                 <TextBlock FontSize="16">Microsoft Office 365</TextBlock>
-                <TextBlock FontSize="13">Логин:</TextBlock>
-                <TextBlock FontSize="13">Пароль:</TextBlock>
+                <TextBlock FontSize="13">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Логин: {0}">
+                            <Binding Path="StudentInfo.OfficeEmail"></Binding>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock FontSize="13">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Пароль: {0}">
+                            <Binding Path="StudentInfo.OfficePassword"></Binding>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
         </DockPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock FontSize="22" Text="{Binding StudentInfo.FirstName }"></TextBlock>
-            <TextBlock FontSize="22">05.09.2002</TextBlock>
-            <TextBlock FontSize="22">3 Курс</TextBlock>
-            <TextBlock FontSize="22">Факультет</TextBlock>
-
+            <TextBlock FontSize="22">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                        <Binding Path="StudentInfo.LastName"/>
+                        <Binding Path="StudentInfo.FirstName"/>
+                        <Binding Path="StudentInfo.MiddleName"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock FontSize="22" 
+                       Text="{Binding StudentInfo.BirthDate}"/>
+            <TextBlock FontSize="22" 
+                       Text="{Binding StudentInfo.Course, StringFormat=Курс: {0}}"/>
+            <TextBlock FontSize="22" 
+                       Text="{Binding Path=StudentInfo.Faculty, StringFormat=Факультет:{0}}"/>
         </StackPanel>
     </Grid>
 </UserControl>
