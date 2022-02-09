@@ -12,7 +12,7 @@ namespace IISBsuir.ViewModels
     {
         public MainWindowViewModel MainModel { get; }
 
-        private readonly DataService _dataService;
+        private DataService _dataService;
 
         #region Свойства
 
@@ -46,6 +46,9 @@ namespace IISBsuir.ViewModels
         private void OnRefreshDataCommandExecuted(object p)
         {
             StudentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
+            // if (_dataService != null)
+            //   Task.Run(_dataService.BsuirClient.GetUserInfoAsync)
+            //      .ContinueWith(task => StudentInfo = task.Result);
         }
 
         public ICommand SendUserProfileCommand { get; }
@@ -53,9 +56,13 @@ namespace IISBsuir.ViewModels
         {
             var studInfo = p as StudentInfo;
             LastResponseMessage = Task.Run(() => _dataService.BsuirClient.PutStudentInfoAsync(studInfo)).Result;
+            // if (_dataService != null)
+            //   Task.Run(() => _dataService.BsuirClient.PutStudentInfoAsync(studInfo))
+            //      .ContinueWith(task => LastResponseMessage = task.Result);
         }
 
         #endregion
+
 
         /// <summary>
         /// Отладочный конструктор для дизайнера
@@ -70,6 +77,9 @@ namespace IISBsuir.ViewModels
             MainModel = mainWindowView;
 
             _dataService = Task.Run(DataService.GetInstance).Result;
+            //Task.Run(DataService.GetInstance)
+            //  .ContinueWith(task => _dataService = task.Result);
+
             //_studentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
 
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);

@@ -11,9 +11,8 @@
              d:DataContext="{d:DesignInstance vm:ProfileViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
-        <c:EnumToString x:Key="EnumToStrConv">
-
-        </c:EnumToString>
+        <c:EnumToString x:Key="EnumToStrConv"/>
+        <c:SkillsToStr x:Key="SkillsToStrConv"/>
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -21,27 +20,29 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
+
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition />
-            <RowDefinition Height="Auto"/>
+            <RowDefinition MinHeight="180" Height="*"/>
+            <RowDefinition MinHeight="200" />
+            <RowDefinition MinHeight="30" Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition MinWidth="250" MaxWidth="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <!-- Фото -->
-        <DockPanel Grid.Row="0" Grid.Column="0" Margin="5 5 5 5" >
-            <Rectangle DockPanel.Dock="Top" Width="180" Height="200"
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5 5 5 5" >
+            <Rectangle DockPanel.Dock="Top" Width="130" Height="150"
                        StrokeThickness="3"
-                       RadiusX="7" RadiusY="8">
+                       RadiusX="7" RadiusY="8"
+                       Margin="0 0 0 30">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="{Binding StudentInfo.PhotoUrl}"></ImageBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button DockPanel.Dock="Bottom" Height="25" Width="180" FontSize="14">Обновить фотографию</Button>
-        </DockPanel>
+            <Button DockPanel.Dock="Bottom" Height="25" Width="130" FontSize="14">Обновить фото</Button>
+        </StackPanel>
 
         <!-- Дополнительная информация -->
         <DockPanel Grid.Row="1" Grid.Column="0" Margin="5 5 5 5">
@@ -119,25 +120,27 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <WrapPanel>
                 <TextBlock FontSize="14" Margin="0 0 0 5">Основная информация</TextBlock>
-                <fa:ImageAwesome Icon="Regular_Save" 
+                <fa:ImageAwesome Name="SaveIcon"
+                                 Icon="Regular_Save" 
                                  Height="20" Margin="5 0 0 2"
                                  Foreground="CornflowerBlue">
                     <fa:ImageAwesome.InputBindings>
                         <MouseBinding
                             Gesture="LeftClick"
                             Command="{Binding SendUserProfileCommand}"
-                            CommandParameter="{Binding StudentInfo}"
-                            />
+                            CommandParameter="{Binding StudentInfo}"/>
                     </fa:ImageAwesome.InputBindings>
                 </fa:ImageAwesome>
             </WrapPanel>
             <TextBox Height="50" Text="{Binding StudentInfo.Summary, 
                 Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Text="Ключевые навыки" FontSize="14"/>
-            <TextBox Height="50"/>
+            <TextBlock Text="Ключевые навыки"
+                       FontSize="14"
+                       Margin="0 5 0 5"/>
+            <TextBox Height="50" Text="{Binding StudentInfo.Skills, Converter={StaticResource SkillsToStrConv}}"/>
 
-            <TextBlock Text="Мои ссылки" FontSize="14"/>
+            <TextBlock Text="Мои ссылки" FontSize="14" Margin="0 5 0 5"/>
             <TextBox Height="50" Text="{Binding StudentInfo.References}"></TextBox>
         </StackPanel>
 

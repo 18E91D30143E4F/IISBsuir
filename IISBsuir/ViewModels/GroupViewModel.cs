@@ -16,7 +16,6 @@ namespace IISBsuir.ViewModels
         #region Group
 
         private Group _group;
-
         public Group Group
         {
             get => _group;
@@ -42,6 +41,7 @@ namespace IISBsuir.ViewModels
         /// </summary>
         public GroupViewModel() : this(null)
         {
+            _dataService = Task.Run(DataService.GetInstance).Result;
             Group = Task.Run(_dataService.BsuirClient.GetGroupInfoAsync).Result;
         }
 

@@ -7,9 +7,19 @@
              xmlns:vm="clr-namespace:IISBsuir.ViewModels"
              xmlns:local="clr-namespace:IISBsuir.Views"
              xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance vm:GroupViewModel}"
+             d:DataContext="{d:DesignInstance vm:GroupViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction  Command="{Binding RefreshDataCommand}"></i:InvokeCommandAction>
@@ -22,9 +32,6 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding Group.NumberOfGroup}"></TextBlock>
-        <Button Height="30" Width="100" Command="{Binding RefreshDataCommand}" >
-            <TextBlock>Загрузить</TextBlock>
-        </Button>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Group.PersonInfo}" AutoGenerateColumns="False">
             <DataGrid.Columns>
