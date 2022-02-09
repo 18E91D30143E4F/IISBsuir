@@ -9,8 +9,8 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:l="clr-namespace:IISBsuir"
         Title="{Binding Title}"
-        Width="800" Height="500"
-        d:DesignHeight="480" d:DesignWidth="750">
+        Width="800" Height="600"
+        d:DesignHeight="600" d:DesignWidth="750">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>

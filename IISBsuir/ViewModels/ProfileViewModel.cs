@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using IISBsuir.Infrastructure.Commands;
 using IISBsuir.Services;
@@ -9,8 +10,11 @@ namespace IISBsuir.ViewModels
 {
     internal class ProfileViewModel : ViewModel
     {
-        private readonly DataService _dataService;
         public MainWindowViewModel MainModel { get; }
+
+        private readonly DataService _dataService;
+
+        #region Свойства
 
         #region Информация о студенте
 
@@ -23,22 +27,32 @@ namespace IISBsuir.ViewModels
 
         #endregion
 
+        #region Статус последнего запроса
+
+        private HttpResponseMessage _lastResponseMessage;
+        public HttpResponseMessage LastResponseMessage
+        {
+            get => _lastResponseMessage;
+            set => Set(ref _lastResponseMessage, value);
+        }
+
+        #endregion
+
+        #endregion
+
         #region Команды
 
         public ICommand RefreshDataCommand { get; }
-
         private void OnRefreshDataCommandExecuted(object p)
         {
             StudentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
         }
 
         public ICommand SendUserProfileCommand { get; }
-
         private void OnSendUserProfileCommandExecuted(object p)
         {
             var studInfo = p as StudentInfo;
-
-            Task.Run(() => _dataService.BsuirClient.PutStudentInfoAsync(studInfo));
+            LastResponseMessage = Task.Run(() => _dataService.BsuirClient.PutStudentInfoAsync(studInfo)).Result;
         }
 
         #endregion
@@ -56,7 +70,7 @@ namespace IISBsuir.ViewModels
             MainModel = mainWindowView;
 
             _dataService = Task.Run(DataService.GetInstance).Result;
-            _studentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
+            //_studentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
 
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);
             SendUserProfileCommand = new LambdaCommand(OnSendUserProfileCommandExecuted);

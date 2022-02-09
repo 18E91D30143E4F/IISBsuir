@@ -10,6 +10,11 @@
              xmlns:c="clr-namespace:IISBsuir.Infrastructure.Converters"
              d:DataContext="{d:DesignInstance vm:ProfileViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <c:EnumToString x:Key="EnumToStrConv">
+
+        </c:EnumToString>
+    </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding RefreshDataCommand}"></i:InvokeCommandAction>
@@ -18,13 +23,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <!-- Фото -->
         <DockPanel Grid.Row="0" Grid.Column="0" Margin="5 5 5 5" >
             <Rectangle DockPanel.Dock="Top" Width="180" Height="200"
                        StrokeThickness="3"
@@ -36,6 +43,7 @@
             <Button DockPanel.Dock="Bottom" Height="25" Width="180" FontSize="14">Обновить фотографию</Button>
         </DockPanel>
 
+        <!-- Дополнительная информация -->
         <DockPanel Grid.Row="1" Grid.Column="0" Margin="5 5 5 5">
             <StackPanel DockPanel.Dock="Top">
                 <TextBlock FontSize="16">
@@ -86,6 +94,7 @@
             </StackPanel>
         </DockPanel>
 
+        <!-- Основная информация о студенте -->
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock FontSize="22">
                 <TextBlock.Text>
@@ -102,7 +111,11 @@
                        Text="{Binding StudentInfo.Course, StringFormat=Курс: {0}}"/>
             <TextBlock FontSize="22" 
                        Text="{Binding Path=StudentInfo.Faculty, StringFormat=Факультет: {0}}"/>
+            <TextBlock FontSize="22" 
+                       Text="{Binding StudentInfo.Rating, StringFormat=Рейтинг: {0} звезды из 5}"/>
         </StackPanel>
+
+        <!-- Редактируемые поля -->
         <StackPanel Grid.Row="1" Grid.Column="1">
             <WrapPanel>
                 <TextBlock FontSize="14" Margin="0 0 0 5">Основная информация</TextBlock>
@@ -118,8 +131,8 @@
                     </fa:ImageAwesome.InputBindings>
                 </fa:ImageAwesome>
             </WrapPanel>
-
-            <TextBox Height="50" Text="{Binding StudentInfo.Summary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Height="50" Text="{Binding StudentInfo.Summary, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <TextBlock Text="Ключевые навыки" FontSize="14"/>
             <TextBox Height="50"/>
@@ -127,5 +140,16 @@
             <TextBlock Text="Мои ссылки" FontSize="14"/>
             <TextBox Height="50" Text="{Binding StudentInfo.References}"></TextBox>
         </StackPanel>
+
+        <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <StatusBarItem>
+                <TextBlock Text="Статус последнего запроса: "/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding LastResponseMessage.StatusCode,
+                    Converter={StaticResource EnumToStrConv},
+                    UpdateSourceTrigger=PropertyChanged}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </UserControl>
