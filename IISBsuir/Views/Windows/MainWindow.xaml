@@ -6,6 +6,7 @@
         xmlns:view="clr-namespace:IISBsuir.Views"
         xmlns:vm="clr-namespace:IISBsuir.ViewModels"
         xmlns:cmd="clr-namespace:IISBsuir.Infrastructure.Commands"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:l="clr-namespace:IISBsuir"
         Title="{Binding Title}"
         Width="800" Height="500"
@@ -30,13 +31,107 @@
             </MenuItem>
         </Menu>
         <TabControl>
-            <TabItem Header="Профиль студента">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_User" Height="13" 
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Профиль" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
                 <view:ProfileView DataContext="{Binding ProfileView}"/>
             </TabItem>
-            <TabItem Header="Зачетка"></TabItem>
-            <TabItem Header="Учеба"></TabItem>
-            <TabItem Header="Группа">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_BookOpen" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Зачетка" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_GraduationCap" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Учеба" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_UserFriends" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Группа" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
                 <view:GroupView DataContext="{Binding GroupView}"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Regular_CalendarAlt" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Пары" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_Bullhorn" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Объявления" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_Medal" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Рейтинг" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Regular_FileAlt" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Тесты" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_UserGraduate" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Диплом" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Solid_HouseUser" Height="13"
+                                         Margin="0 0 5 0"
+                                         Foreground="CornflowerBlue"/>
+                        <TextBlock Text="Общежитие" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
             </TabItem>
         </TabControl>
     </DockPanel>
