@@ -34,11 +34,20 @@ namespace IISBsuir.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// Отладочный конструктор для дизайнера
+        /// </summary>
+        public ProfileViewModel() : this(null)
+        {
+            _studentInfo = Task.Run(DataService.GetInstance().BsuirClient.GetUserInfoAsync).Result;
+        }
+
         public ProfileViewModel(MainWindowViewModel mainWindowView)
         {
             MainModel = mainWindowView;
 
             _dataService = Task.Run(DataService.GetInstance).Result;
+            _studentInfo = Task.Run(_dataService.BsuirClient.GetUserInfoAsync).Result;
 
             RefreshDataCommand = new LambdaCommand(OnRefreshDataCommandExecuted);
         }

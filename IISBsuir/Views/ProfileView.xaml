@@ -6,7 +6,8 @@
              xmlns:vm="clr-namespace:IISBsuir.ViewModels"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
-             d:DataContext="{d:DesignInstance vm:ProfileViewModel}"
+             xmlns:fa="http://schemas.fontawesome.com/icons/"
+             d:DataContext="{d:DesignInstance vm:ProfileViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="500" d:DesignWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -28,7 +29,7 @@
                        StrokeThickness="3"
                        RadiusX="7" RadiusY="8">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="\Resources\Img\Person.png"></ImageBrush>
+                    <ImageBrush ImageSource="{Binding StudentInfo.PhotoUrl}"></ImageBrush>
                 </Rectangle.Fill>
             </Rectangle>
             <Button DockPanel.Dock="Bottom" Height="25" Width="180" FontSize="14">Обновить фотографию</Button>
@@ -36,14 +37,22 @@
 
         <DockPanel Grid.Row="1" Grid.Column="0" Margin="5 5 5 5">
             <StackPanel DockPanel.Dock="Top">
-                <TextBlock FontSize="16">Настройки доступа</TextBlock>
+                <TextBlock FontSize="16">
+                    <fa:ImageAwesome Icon="Solid_Cog" Height="13"
+                                     Foreground="CornflowerBlue"/>
+                    Настройки доступа
+                </TextBlock>
                 <CheckBox FontSize="13">Общедоступный рейтинг</CheckBox>
                 <CheckBox FontSize="13">Общедоступный профиль</CheckBox>
                 <CheckBox FontSize="13">Ищу работу</CheckBox>
             </StackPanel>
 
             <StackPanel DockPanel.Dock="Bottom">
-                <TextBlock FontSize="16">Microsoft Office 365</TextBlock>
+                <TextBlock FontSize="16">
+                    <fa:ImageAwesome Icon="Regular_Envelope" Height="13"
+                                     Foreground="CornflowerBlue"/>
+                    Microsoft Office 365
+                </TextBlock>
                 <TextBlock FontSize="13">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}Логин: {0}">
@@ -77,6 +86,16 @@
                        Text="{Binding StudentInfo.Course, StringFormat=Курс: {0}}"/>
             <TextBlock FontSize="22" 
                        Text="{Binding Path=StudentInfo.Faculty, StringFormat=Факультет:{0}}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Основная информация" FontSize="14"/>
+            <TextBox Height="50" Text="{Binding StudentInfo.Summary}"></TextBox>
+
+            <TextBlock Text="Ключевые навыки" FontSize="14"/>
+            <TextBox Height="50" Text="{Binding StudentInfo.Skills, StringFormat=ToString()}"></TextBox>
+
+            <TextBlock Text="Мои ссылки" FontSize="14"/>
+            <TextBox Height="50" Text="{Binding StudentInfo.References}"></TextBox>
         </StackPanel>
     </Grid>
 </UserControl>
