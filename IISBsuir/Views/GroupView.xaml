@@ -10,7 +10,11 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance vm:GroupViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction  Command="{Binding RefreshDataCommand}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>

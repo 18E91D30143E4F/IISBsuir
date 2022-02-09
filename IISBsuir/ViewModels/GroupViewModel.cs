@@ -42,6 +42,7 @@ namespace IISBsuir.ViewModels
         /// </summary>
         public GroupViewModel() : this(null)
         {
+            Group = Task.Run(_dataService.BsuirClient.GetGroupInfoAsync).Result;
         }
 
         public GroupViewModel(MainWindowViewModel mainModel)
