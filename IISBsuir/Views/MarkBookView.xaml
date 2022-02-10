@@ -3,17 +3,98 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:IISBsuir.ViewModels"
              xmlns:l="clr-namespace:IISBsuir.Views"
+             xmlns:c="clr-namespace:IISBsuir.Infrastructure.Converters"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DataContext="{d:DesignInstance vm:MarkBookViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="50"/>
             <RowDefinition MaxHeight="50"/>
-            <RowDefinition MaxHeight="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!--#region Первая строка-->
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0" FontSize="18" Margin="10 10 0 0"
+                   Text="{Binding MarkBook.Number, StringFormat=Номер студенческого: {0}}"/>
+        <TextBlock HorizontalAlignment="Right" Grid.Row="0" FontSize="18" Margin="0 10 10 0"
+                   Text="{Binding MarkBook.AverageMark, StringFormat=Общий средний балл: {0}}"/>
+        <!--#endregion-->
+
+        <DockPanel Grid.Row="2">
+            <WrapPanel DockPanel.Dock="Top">
+                <TextBlock Text="Семестр: " FontSize="20"/>
+
+                <ListBox ItemsSource="{Binding MarkBook.MarkPages.Keys}"
+                         SelectedItem="{Binding SelectedPageKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Background="Transparent"
+                         BorderThickness="0" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="Semesters"
+                                         Content="{Binding}"
+                                         Margin="0 0 6 0"
+                                         IsEnabled="{Binding}"
+                                         IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}},Path=IsSelected}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
 
+                <!--
+                <ItemsControl ItemsSource="{Binding MarkBook.MarkPages.Keys}" 
+                          Margin="10 0 0 0"
+                          VerticalAlignment="Bottom">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Viewbox Height="20">
+                                <RadioButton GroupName="Semesters"
+                                             Content="{Binding}"
+                                             Margin="0 0 6 0">
+                                    <RadioButton.InputBindings>
+                                        <MouseBinding Gesture="LeftClick"
+                                                      Command="{Binding EditComboCommand}">
+                                        </MouseBinding>
+                                    </RadioButton.InputBindings>
+                                </RadioButton>
+                            </Viewbox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                -->
+            </WrapPanel>
+
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedMarkPage.Marks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DockPanel.Dock="Top">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Дисциплина" Binding="{Binding Subject}" MaxWidth="130" MinWidth="100"/>
+                    <DataGridTextColumn Header="Часы" Binding="{Binding Hours}" MinWidth="50" MaxWidth="80"/>
+                    <DataGridTextColumn Header="Ф.контроля	" Binding="{Binding FormOfControl}" MinWidth="110" MaxWidth="130"/>
+                    <DataGridTextColumn Header="Оценка" Binding="{Binding Mark}" MinWidth="60" MaxWidth="80"/>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding Date}" MaxWidth="100" MinWidth="80"/>
+                    <DataGridTextColumn Header="Преподаватель" Binding="{Binding Teacher}" MinWidth="200" MaxWidth="300"/>
+                    <DataGridTextColumn Header="Пересдачи" Binding="{Binding RetakesCount}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
     </Grid>
 </UserControl>

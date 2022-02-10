@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace IISBsuirWPFTest
 {
@@ -10,6 +12,12 @@ namespace IISBsuirWPFTest
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public class TodoItem
+        {
+            public string Title { get; set; }
+            public int Completion { get; set; }
         }
     }
 }
