@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using IISBsuir.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace IISBsuir
 {
@@ -7,5 +10,9 @@ namespace IISBsuir
     /// </summary>
     public partial class App : Application
     {
+        public static void ConfigireServices(HostBuilderContext host, IServiceCollection services)
+        {
+            services.AddSingleton<DataService>();
+        }
     }
 }
