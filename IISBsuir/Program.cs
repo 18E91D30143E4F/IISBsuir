@@ -25,7 +25,7 @@ namespace IISBsuir
                 cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             });
 
-            host_builder.ConfigureServices(App.ConfigireServices);
+            host_builder.ConfigureServices(App.ConfigureServices);
 
             return host_builder;
         }

@@ -10,7 +10,7 @@ namespace IISBsuir
     /// </summary>
     public partial class App : Application
     {
-        public static void ConfigireServices(HostBuilderContext host, IServiceCollection services)
+        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddSingleton<DataService>();
         }
