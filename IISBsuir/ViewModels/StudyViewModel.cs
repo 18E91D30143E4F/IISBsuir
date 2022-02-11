@@ -49,6 +49,9 @@ namespace IISBsuir.ViewModels
             MainModel = mainModel;
 
             _DataService = Task.Run(DataService.GetInstance).Result;
+
+            MarkSheets = Task.Run(_DataService.BsuirClient.GetMarkSheetAsync).Result;
+            Certificates = Task.Run(_DataService.BsuirClient.GetCertificatesAsync).Result;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace IISBsuir.ViewModels
         public GroupViewModel GroupView { get; }
         public ProfileViewModel ProfileView { get; }
         public MarkBookViewModel MarkBookView { get; }
+        public StudyViewModel StudyView { get; }
 
         #region Заголовок окна
 
@@ -41,6 +42,7 @@ namespace IISBsuir.ViewModels
             GroupView = new GroupViewModel(this);
             ProfileView = new ProfileViewModel(this);
             MarkBookView = new MarkBookViewModel(this);
+            StudyView = new StudyViewModel(this);
 
             #region Команды
 

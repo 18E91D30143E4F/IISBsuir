@@ -35,7 +35,7 @@
                    Text="{Binding MarkBook.AverageMark, StringFormat=Общий средний балл: {0}}"/>
         <!--#endregion-->
 
-        <DockPanel Grid.Row="1">
+        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
             <WrapPanel DockPanel.Dock="Top" Margin="10 0 0 0">
                 <TextBlock Text="Семестр: " FontSize="20"/>
                 <ListBox ItemsSource="{Binding MarkBook.MarkPages.Keys}"
@@ -86,12 +86,14 @@
                 </ItemsControl>
                 -->
             </WrapPanel>
+
             <TextBlock DockPanel.Dock="Top" Margin="10 0 0 0"
                        FontSize="16"
                        Text="{Binding SelectedMarkPage.AverageMark, StringFormat=Средний балл за семестр: {0}}"/>
 
             <!-- Таблица отметок -->
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SelectedMarkPage.Marks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DockPanel.Dock="Top">
+            <DataGrid AutoGenerateColumns="False"
+                      ItemsSource="{Binding SelectedMarkPage.Marks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DockPanel.Dock="Top">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Дисциплина" Binding="{Binding Subject}" MaxWidth="130" MinWidth="100"/>
                     <DataGridTextColumn Header="Часы" Binding="{Binding Hours}" MinWidth="50" MaxWidth="80"/>

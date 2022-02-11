@@ -8,11 +8,19 @@
              xmlns:m="clr-namespace:IIsHelper.Models;assembly=IIsHelper"
              xmlns:fa="http://schemas.fontawesome.com/icons/"
              xmlns:c="clr-namespace:IISBsuir.Infrastructure.Converters"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DataContext="{d:DesignInstance vm:ProfileViewModel, d:IsDesignTimeCreatable=True}"
              d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
-        <c:EnumToString x:Key="EnumToStrConv"/>
-        <c:SkillsToStr x:Key="SkillsToStrConv"/>
+        <ResourceDictionary>
+            <c:EnumToString x:Key="EnumToStrConv"/>
+            <c:SkillsToStr x:Key="SkillsToStrConv"/>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

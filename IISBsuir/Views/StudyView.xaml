@@ -20,13 +20,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.35*" MaxHeight="100"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.35*" MaxHeight="100"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
-        <!-- Ведомостички -->
         <StackPanel Grid.Row="0" Margin="10">
             <TextBlock Text="Ведомостички" Margin="5" FontSize="20"/>
             <Button Content="Заказать ведомостичку"
@@ -34,62 +35,72 @@
                     HorizontalAlignment="Left"
                     Margin="5"
                     FontSize="15"/>
-            <DataGrid AutoGenerateColumns="False" Margin="5" ItemsSource="{Binding MarkSheets}">
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="{Binding Status, Converter={StaticResource StatusToColorConv}}"/>
-                    </Style>
-                </DataGrid.RowStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата со­зда­ния" Width="0.16*"
-                                        Binding="{Binding CreateDate}"/>
-                    <DataGridTextColumn Header="Дис­ци­пли­на" Width="0.16*">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding StringFormat="{}{0} ({1})&#x0a;{2} семестр">
-                                <Binding Path="Subject.Abbrev"/>
-                                <Binding Path="Subject.LessonTypeAbbrev"/>
-                                <Binding Path="Subject.Term"/>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Тип" Width="0.16*"
-                                        Binding="{Binding MarkSheetType.ShortName}"/>
-                    <DataGridTextColumn Header="Пре­по­да­ва­тель" Width="0.16*"
-                                        Binding="{Binding Employee.Fio}"/>
-                    <DataGridTextColumn Header="Дата про­пус­ка" Width="0.16*"
-                                        Binding="{Binding AbsentDate}"/>
-                    <DataGridTextColumn Header="Ста­тус" Width="0.16*"
-                                        Binding="{Binding Status}"/>
-                </DataGrid.Columns>
-            </DataGrid>
         </StackPanel>
 
-        <!-- Справки -->
-        <StackPanel Grid.Row="1" Margin="10">
+        <!-- Ведомостички -->
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1" Margin="10 0 10 0"
+                  ItemsSource="{Binding MarkSheets}"
+                  VerticalScrollBarVisibility="Visible"
+                  VerticalAlignment="Stretch">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding Status, Converter={StaticResource StatusToColorConv}}"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата со­зда­ния" Width="0.16*"
+                                        Binding="{Binding CreateDate}"/>
+                <DataGridTextColumn Header="Дис­ци­пли­на" Width="0.16*">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} ({1})&#x0a;{2} семестр">
+                            <Binding Path="Subject.Abbrev"/>
+                            <Binding Path="Subject.LessonTypeAbbrev"/>
+                            <Binding Path="Subject.Term"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Тип" Width="0.16*"
+                                        Binding="{Binding MarkSheetType.ShortName}"/>
+                <DataGridTextColumn Header="Пре­по­да­ва­тель" Width="0.16*"
+                                        Binding="{Binding Employee.Fio}"/>
+                <DataGridTextColumn Header="Дата про­пус­ка" Width="0.16*"
+                                        Binding="{Binding AbsentDate}"/>
+                <DataGridTextColumn Header="Ста­тус" Width="0.16*"
+                                        Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Margin="10">
             <TextBlock Text="Справки" Margin="5" FontSize="20"/>
             <Button Content="Заказать справку"
                     Width="200"
                     HorizontalAlignment="Left"
                     Margin="5"
                     FontSize="15"/>
-            <DataGrid AutoGenerateColumns="False" Margin="5" ItemsSource="{Binding Certificates}">
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background"
-                                Value="{Binding Status, Converter={StaticResource IntToStatusConv}}"/>
-                    </Style>
-                </DataGrid.RowStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Да­та за­ка­за" Width="0.10*"
-                                        Binding="{Binding DateOrder}"/>
-                    <DataGridTextColumn Header="Мес­то предъ­яв­ле­ния" Width="0.25*"
-                                        Binding="{Binding ProvisionPlace}"/>
-                    <DataGridTextColumn Header="Ста­тус" Width="0.15*"
-                                        Binding="{Binding Status, Converter={StaticResource StatusToStringConv}}"/>
-                    <DataGridTextColumn Header="При­чи­на­ от­ка­за" Width="0.5*"
-                                        Binding="{Binding RejectionReason}"/>
-                </DataGrid.Columns>
-            </DataGrid>
         </StackPanel>
+
+        <!-- Справки -->
+        <DataGrid AutoGenerateColumns="False" Grid.Row="3" Margin="10 0 10 0" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding Certificates}"
+                  VerticalScrollBarVisibility="Visible"
+                 >
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background"
+                                Value="{Binding Status, Converter={StaticResource IntToStatusConv}}"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Да­та за­ка­за" Width="0.10*"
+                                        Binding="{Binding DateOrder}"/>
+                <DataGridTextColumn Header="Мес­то предъ­яв­ле­ния" Width="0.25*"
+                                        Binding="{Binding ProvisionPlace}"/>
+                <DataGridTextColumn Header="Ста­тус" Width="0.15*"
+                                        Binding="{Binding Status, Converter={StaticResource StatusToStringConv}}"/>
+                <DataGridTextColumn Header="При­чи­на­ от­ка­за" Width="0.5*"
+                                        Binding="{Binding RejectionReason}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </UserControl>

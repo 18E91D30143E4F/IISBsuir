@@ -62,6 +62,7 @@
                         <TextBlock Text="Учеба" FontSize="14"></TextBlock>
                     </StackPanel>
                 </TabItem.Header>
+                <view:StudyView DataContext="{Binding StudyView}"/>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
