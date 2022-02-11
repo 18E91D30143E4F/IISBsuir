@@ -37,10 +37,10 @@
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Group.PersonInfo}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Должность" Binding="{Binding Position}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Фамилия Имя Отчество" Binding="{Binding Fio}"/>
-                <DataGridTextColumn Header="Номер телефона" Binding="{Binding  Phone}"/>
-                <DataGridTextColumn Header="Электронная почта" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Position}" Width="0.15*"/>
+                <DataGridTextColumn Header="Фамилия Имя Отчество" Binding="{Binding Fio}" Width="0.30*"/>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding  Phone}" Width="0.2*"/>
+                <DataGridTextColumn Header="Электронная почта" Binding="{Binding Email}" Width="0.30*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

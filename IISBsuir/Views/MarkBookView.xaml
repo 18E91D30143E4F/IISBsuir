@@ -24,8 +24,9 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--#region Первая строка-->
@@ -35,7 +36,7 @@
                    Text="{Binding MarkBook.AverageMark, StringFormat=Общий средний балл: {0}}"/>
         <!--#endregion-->
 
-        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
+        <DockPanel Grid.Row="1">
             <WrapPanel DockPanel.Dock="Top" Margin="10 0 0 0">
                 <TextBlock Text="Семестр: " FontSize="20"/>
                 <ListBox ItemsSource="{Binding MarkBook.MarkPages.Keys}"
@@ -57,84 +58,48 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-
-
-                <!--
-                <ItemsControl ItemsSource="{Binding MarkBook.MarkPages.Keys}" 
-                          Margin="10 0 0 0"
-                          VerticalAlignment="Bottom">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Viewbox Height="20">
-                                <RadioButton GroupName="Semesters"
-                                             Content="{Binding}"
-                                             Margin="0 0 6 0">
-                                    <RadioButton.InputBindings>
-                                        <MouseBinding Gesture="LeftClick"
-                                                      Command="{Binding EditComboCommand}">
-                                        </MouseBinding>
-                                    </RadioButton.InputBindings>
-                                </RadioButton>
-                            </Viewbox>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                -->
             </WrapPanel>
 
             <TextBlock DockPanel.Dock="Top" Margin="10 0 0 0"
                        FontSize="16"
                        Text="{Binding SelectedMarkPage.AverageMark, StringFormat=Средний балл за семестр: {0}}"/>
-
-            <!-- Таблица отметок -->
-            <DataGrid AutoGenerateColumns="False"
-                      ItemsSource="{Binding SelectedMarkPage.Marks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DockPanel.Dock="Top">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дисциплина" Binding="{Binding Subject}" MaxWidth="130" MinWidth="100"/>
-                    <DataGridTextColumn Header="Часы" Binding="{Binding Hours}" MinWidth="50" MaxWidth="80"/>
-                    <DataGridTextColumn Header="Ф.контроля	" Binding="{Binding FormOfControl}" MinWidth="110" MaxWidth="130"/>
-                    <DataGridTemplateColumn Header="Оценка" Width="80">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate DataType="m:MarkElement">
-                                <WrapPanel>
-                                    <TextBlock Text="{Binding Mark}" x:Name="tbMark">
-                                        <TextBlock.Foreground>
-                                            <MultiBinding Converter="{StaticResource ValueToColorStrConv}">
-                                                <Binding Path="Text" ElementName="secondElement"/>
-                                                <Binding Path="Text" RelativeSource="{RelativeSource Mode=Self}"/>
-                                            </MultiBinding>
-                                        </TextBlock.Foreground>
-                                    </TextBlock>
-                                    <TextBlock x:Name="secondElement" Text="{Binding CommonMark, StringFormat=({0:F2})*, TargetNullValue=.}"/>
-                                </WrapPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <!--<DataGridTextColumn Header="Оценка" MinWidth="60" MaxWidth="80">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding Converter="{StaticResource MarkToStrConv}">
-                                <Binding Path="Mark"></Binding>
-                                <Binding Path="CommonMark"></Binding>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>-->
-                    <DataGridTextColumn Header="Дата" Binding="{Binding Date}" MaxWidth="100" MinWidth="80"/>
-                    <DataGridTextColumn Header="Преподаватель" Binding="{Binding Teacher}" MinWidth="200" MaxWidth="230"/>
-                    <DataGridTextColumn Header="Пересдачи">
-                        <DataGridTextColumn.Binding>
-                            <MultiBinding Converter="{StaticResource RetakesToStringCnv}">
-                                <Binding Path="RetakesCount"></Binding>
-                                <Binding Path="CommonRetakes"></Binding>
-                            </MultiBinding>
-                        </DataGridTextColumn.Binding>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
         </DockPanel>
+
+        <!-- Таблица отметок -->
+        <DataGrid AutoGenerateColumns="False" Grid.Row="2"
+                      ItemsSource="{Binding SelectedMarkPage.Marks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DockPanel.Dock="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дисциплина" Binding="{Binding Subject}" Width="0.17*"/>
+                <DataGridTextColumn Header="Часы" Binding="{Binding Hours}" Width="0.10*"/>
+                <DataGridTextColumn Header="Ф.контроля	" Binding="{Binding FormOfControl}" Width="0.17*"/>
+                <DataGridTemplateColumn Header="Оценка" Width="0.12*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="m:MarkElement">
+                            <WrapPanel>
+                                <TextBlock Text="{Binding Mark}" x:Name="tbMark">
+                                    <TextBlock.Foreground>
+                                        <MultiBinding Converter="{StaticResource ValueToColorStrConv}">
+                                            <Binding Path="Text" ElementName="secondElement"/>
+                                            <Binding Path="Text" RelativeSource="{RelativeSource Mode=Self}"/>
+                                        </MultiBinding>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <TextBlock x:Name="secondElement" Text="{Binding CommonMark, StringFormat=({0:F2})*, TargetNullValue=.}"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="0.17*"/>
+                <DataGridTextColumn Header="Преподаватель" Binding="{Binding Teacher}" Width="0.29*"/>
+                <DataGridTextColumn Header="Пересдачи" Width="0.17*">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding Converter="{StaticResource RetakesToStringCnv}">
+                            <Binding Path="RetakesCount"></Binding>
+                            <Binding Path="CommonRetakes"></Binding>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
